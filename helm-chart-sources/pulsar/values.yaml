@@ -419,6 +419,11 @@ storageOffload: {}
 ## templates/zookeeper-statefulset.yaml
 ##
 zookeeper:
+  image:
+    securityContext:
+      enabled: yes
+      runAsUser: 10000
+      runAsGroup: 10001
   component: zookeeper
   replicaCount: 3
   updateStrategy:
@@ -585,6 +590,11 @@ zookeeperMetadata:
 ## templates/bookkeeper-statefulset.yaml
 ##
 bookkeeper:
+  image:
+    securityContext:
+      enabled: yes
+      runAsUser: 10000
+      runAsGroup: 10001
   component: bookkeeper
   replicaCount: 3
   updateStrategy:
@@ -719,6 +729,11 @@ bookkeeper:
 ## templates/broker-deployment.yaml
 ##
 broker:
+  image:
+    securityContext:
+      enabled: yes
+      runAsUser: 10000
+      runAsGroup: 10001
   component: broker
   replicaCount: 3
   # ledger:
@@ -1119,6 +1134,11 @@ burnell: {}
 ## templates/proxy-deployment.yaml
 ##
 proxy:
+  image:
+    securityContext:
+      enabled: yes
+      runAsUser: 10000
+      runAsGroup: 10001
   component: proxy
   replicaCount: 3
   disableZookeeperDiscovery: yes

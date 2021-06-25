@@ -52,6 +52,11 @@ spec:
       {{- end }}
 {{ toYaml .Values.proxy.annotations | indent 8 }}
     spec:
+      {{- if .Values.proxy.image.securityContext.enabled }}
+      securityContext:
+        runAsUser: {{ .Values.proxy.image.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.proxy.image.securityContext.runAsGroup }}
+      {{- end }}
       {{- if .Values.priorityClass.enabled }}
       priorityClassName: pulsar-priority
       {{- end }}

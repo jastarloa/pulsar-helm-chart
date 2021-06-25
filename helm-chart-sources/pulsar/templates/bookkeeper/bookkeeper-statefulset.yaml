@@ -51,6 +51,11 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/bookkeeper/bookkeeper-configmap.yaml") . | sha256sum }}
       {{- end }}
     spec:
+      {{- if .Values.bookkeeper.image.securityContext.enabled }}
+      securityContext:
+        runAsUser: {{ .Values.bookkeeper.image.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.bookkeeper.image.securityContext.runAsGroup }}
+      {{- end }}
       {{- if .Values.priorityClass.enabled }}
       priorityClassName: pulsar-priority
       {{- end }}

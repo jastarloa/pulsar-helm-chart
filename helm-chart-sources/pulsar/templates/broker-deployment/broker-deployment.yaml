@@ -52,6 +52,11 @@ spec:
       {{- end }}
 {{ toYaml .Values.broker.annotations | indent 8 }}
     spec:
+      {{- if .Values.broker.image.securityContext.enabled }}
+      securityContext:
+        runAsUser: {{ .Values.broker.image.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.broker.image.securityContext.runAsGroup }}
+      {{- end }}
       {{- if .Values.priorityClass.enabled }}
       priorityClassName: pulsar-priority
       {{- end }}
